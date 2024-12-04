@@ -1,10 +1,7 @@
 import { useState } from "react";
 
 const Bookshelf = () => {
-const [books, setBooks] = useState([
-    { title: 'Fourth Wing', author: 'Rebecca Yarros' },
-  { title: 'The Lion, the Witch and the Wardrobe', author: 'C.S. Lewis' },
-])
+const [books, setBooks] = useState([])
 
 const [newBooks, setNewBooks] = useState({
     title: '',
@@ -17,10 +14,10 @@ setNewBooks({...newBooks, [event.target.name] : event.target.value})
 
 const handleSubmit = (event) => {
     event.preventDefault()
-    setBooks(`title: ${newBooks.title} Author: ${newBooks.author}`)
+    setBooks((prevBooks) => [...prevBooks, newBooks])
     setNewBooks({title:'', author:''})
 }
-
+ 
 return (
     <>
 <div className="bookshelfDiv">
@@ -32,8 +29,7 @@ return (
         name='title'
         value={newBooks.title}
         onChange={handleInputChange} />
-    </form>
-    <form onSubmit={handleSubmit}>
+
         <label htmlFor="author">Author: </label>
         <input id="author"
         name='author'
@@ -43,8 +39,16 @@ return (
     </form>
 
   </div>
-  <div className="bookCardsDiv"></div>
+  <div className="bookCardsDiv">{books.map((book, index) => (
+    <div
+     key={index}>
+        <h3>{book.title}</h3>
+        <p>{book.author}</p>
+    </div>
+  ))}
+  </div>
   </div>
   </>
 )
 }
+export default Bookshelf
