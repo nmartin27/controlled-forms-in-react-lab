@@ -92,6 +92,8 @@ input {
   flex-wrap: wrap;
   width: 90%;
   margin-top: 20px;
+  /* border: 2px solid white; */
+
 }
 
 .bookCard {

@@ -40,10 +40,10 @@ return (
 
   </div>
   <div className="bookCardsDiv">{books.map((book, index) => (
-    <div
+    <div className="bookCard"
      key={index}>
-        <h3>{book.title}</h3>
-        <p>{book.author}</p>
+        <h3>Title: {book.title}</h3>
+        <p>Author: {book.author}</p>
     </div>
   ))}
   </div>
